@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Tulips</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .garden {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .tulip-container {
+            position: relative;
+            width: 100px;
+            height: 200px;
+            margin: 10px;
+        }
+
+        .tulip {
+            width: 100%;
+            height: 100%;
+            animation: sway 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes sway {
+            0% {
+                transform: rotate(-2deg);
+            }
+            100% {
+                transform: rotate(2deg);
+            }
+        }
+
+        .flower {
+            transform-origin: bottom;
+        }
+
+        .petal {
+            transform-origin: bottom center;
+            animation: glow 2s ease-in-out infinite alternate, open 4s ease-in-out infinite alternate;
+        }
+
+        .petal-1 { animation-delay: 0s; }
+        .petal-2 { animation-delay: 0.5s; }
+        .petal-3 { animation-delay: 1s; }
+        .petal-4 { animation-delay: 1.5s; }
+        .petal-5 { animation-delay: 2s; }
+        .petal-6 { animation-delay: 2.5s; }
+        .petal-7 { animation-delay: 3s; }
+        .petal-8 { animation-delay: 3.5s; }
+
+        @keyframes glow {
+            0% {
+                filter: drop-shadow(0 0 5px #FF69B4);
+            }
+            100% {
+                filter: drop-shadow(0 0 20px #FF1493);
+            }
+        }
+
+        @keyframes open {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            100% {
+                transform: rotate(20deg) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="garden">
+        <!-- This code creates 200 tulips dynamically with a glowing effect -->
+        <script>
+            const garden = document.querySelector('.garden');
+            for (let i = 0; i < 200; i++) {
+                const tulipContainer = document.createElement('div');
+                tulipContainer.classList.add('tulip-container');
+                tulipContainer.innerHTML = `
+                    <svg class="tulip" viewBox="0 0 100 100">
+                        <g class="stem">
+                            <rect x="48" y="20" width="4" height="60" fill="#228B22"/>
+                        </g>
+                        <g class="leaves">
+                            <path d="M50 50 Q 30 70 50 90 Q 70 70 50 50" fill="#228B22"/>
+                            <path d="M50 50 Q 70 70 50 90 Q 30 70 50 50" fill="#228B22"/>
+                        </g>
+                        <g class="flower">
+                            <path class="petal petal-1" d="M50 20 Q 40 10 50 0 Q 60 10 50 20" fill="#FF1493"/>
+                            <path class="petal petal-2" d="M50 20 Q 45 10 50 0 Q 55 10 50 20" fill="#FF69B4"/>
+                            <path class="petal petal-3" d="M50 20 Q 50 10 50 0 Q 50 10 50 20" fill="#FFB6C1"/>
+                            <path class="petal petal-4" d="M50 20 Q 35 10 50 0 Q 65 10 50 20" fill="#FF1493"/>
+                            <path class="petal petal-5" d="M50 20 Q 38 10 50 0 Q 62 10 50 20" fill="#FF69B4"/>
+                            <path class="petal petal-6" d="M50 20 Q 43 10 50 0 Q 57 10 50 20" fill="#FFB6C1"/>
+                            <path class="petal petal-7" d="M50 20 Q 47 10 50 0 Q 53 10 50 20" fill="#FF1493"/>
+                            <path class="petal petal-8" d="M50 20 Q 42 10 50 0 Q 58 10 50 20" fill="#FF69B4"/>
+                        </g>
+                    </svg>
+                `;
+                garden.appendChild(tulipContainer);
+            }
+        </script>
+    </div>
+</body>
+</html>
